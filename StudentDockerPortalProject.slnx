@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="compose.yaml" />
+  </Folder>
+  <Project Path="StudentDockerPortalProject.Grade/StudentDockerPortalProject.Grade.csproj" />
+  <Project Path="StudentDockerPortalProject.Students/StudentDockerPortalProject.Students.csproj" />
+</Solution>

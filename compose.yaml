@@ -1,0 +1,52 @@
+﻿services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "AymanMohamed1234"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - student-network
+      
+  students-mvc:
+    build:
+      context: ./StudentDockerPortalProject.Students
+      dockerfile: Dockerfile
+    container_name: students-mvc
+    ports:
+      - "5001:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Docker"
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__StudentDbConnectionString: "Server=sqlserver,1433;Database=DockerStudentPortal;User ID=sa;Password=AymanMohamed1234;TrustServerCertificate=True;"
+    depends_on:
+      - sqlserver
+    networks:
+      - student-network
+      
+  grades-mvc:
+    build:
+      context: ./StudentDockerPortalProject.Grade
+      dockerfile: Dockerfile
+    container_name: grades-mvc
+    ports:
+      - "5002:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Docker"
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__StudentDbConnectionString: "Server=sqlserver,1433;Database=DockerGradePortal;User ID=sa;Password=AymanMohamed1234;TrustServerCertificate=True;"
+      StudentsApi__BaseUrl: "http://students-mvc:8080"
+    depends_on:
+      - sqlserver
+      - students-mvc
+    networks:
+      - student-network
+volumes:
+  sqlserver-data:
+networks:
+  student-network:
+    driver: bridge
