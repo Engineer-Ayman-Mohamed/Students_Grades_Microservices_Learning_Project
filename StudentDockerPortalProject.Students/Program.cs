@@ -9,11 +9,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<StudentsDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("StudentDbConnectionString"), sqlOptions =>
-        {
-          sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);  
-        })
-        .EnableSensitiveDataLogging()
-        .LogTo(Console.WriteLine, LogLevel.Information);
+    {
+        sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);
+    });
+
+#if DEBUG
+    options.EnableSensitiveDataLogging()
+           .LogTo(Console.WriteLine, LogLevel.Information);
+#endif
 });
 
 builder.Services.AddEndpointsApiExplorer();
@@ -57,6 +60,4 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-
 app.Run();

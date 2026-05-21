@@ -86,7 +86,7 @@ public class StudentsController : Controller
     }
     public async Task<ActionResult<List<Student>>> GetAll()
     {
-        var students = await  _context.Students.AsNoTracking().ToListAsync();
+        var students = await _context.Students.AsNoTracking().ToListAsync();
         return Json(students);
     }
     public async Task<ActionResult<Student>> GetById(int? id)

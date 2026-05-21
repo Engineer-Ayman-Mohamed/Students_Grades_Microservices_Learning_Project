@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StudentDockerPortalProject.Grade")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43ccb3d58ac54b040477ba4297d2a3466859d0b3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8537a122b5aef757e9d6f23c124dd7136742e5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("StudentDockerPortalProject.Grade")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StudentDockerPortalProject.Grade")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

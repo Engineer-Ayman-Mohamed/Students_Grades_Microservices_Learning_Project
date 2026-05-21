@@ -165,8 +165,10 @@ public class GradesController : Controller
 
         try
         {
-            var student = await _studentsService.GetStudentByIdAsync(grade.StudentId)!;
-            vm.StudentName = $"{student.FirstName} {student.LastName}";
+            var student = await _studentsService.GetStudentByIdAsync(grade.StudentId);
+            vm.StudentName = student is not null
+                ? $"{student.FirstName} {student.LastName}"
+                : "Unknown";
         }
         catch (Exception ex)
         {
@@ -211,8 +213,10 @@ public class GradesController : Controller
 
         try
         {
-            var student = await _studentsService.GetStudentByIdAsync(grade.StudentId)!;
-            vm.StudentName = $"{student.FirstName} {student.LastName}";
+            var student = await _studentsService.GetStudentByIdAsync(grade.StudentId);
+            vm.StudentName = student is not null
+                ? $"{student.FirstName} {student.LastName}"
+                : "Unknown";
         }
         catch (Exception ex)
         {

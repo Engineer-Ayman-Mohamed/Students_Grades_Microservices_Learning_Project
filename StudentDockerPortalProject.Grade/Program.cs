@@ -8,10 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<GradeDatabaseContext>(options =>
 {
-    options
-        .UseSqlServer(builder.Configuration.GetConnectionString("StudentDbConnectionString"))
-        .EnableSensitiveDataLogging()
-        .LogTo(Console.WriteLine, LogLevel.Information);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("StudentDbConnectionString"));
+
+#if DEBUG
+    options.EnableSensitiveDataLogging()
+           .LogTo(Console.WriteLine, LogLevel.Information);
+#endif
 });
 
 builder.Services.AddHttpClient<IStudentService, StudentService>(client =>
@@ -33,7 +35,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 app.UseRouting();
 
 app.UseAuthorization();
