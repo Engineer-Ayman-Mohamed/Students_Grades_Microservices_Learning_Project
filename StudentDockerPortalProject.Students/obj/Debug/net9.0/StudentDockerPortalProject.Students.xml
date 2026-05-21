@@ -46,17 +46,5 @@
         <member name="M:StudentDockerPortalProject.Students.Migrations.initialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:StudentDockerPortalProject.Students.Migrations.initialMigrationGrade">
-            <inheritdoc />
-        </member>
-        <member name="M:StudentDockerPortalProject.Students.Migrations.initialMigrationGrade.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:StudentDockerPortalProject.Students.Migrations.initialMigrationGrade.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:StudentDockerPortalProject.Students.Migrations.initialMigrationGrade.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
     </members>
 </doc>

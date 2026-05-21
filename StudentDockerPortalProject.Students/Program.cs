@@ -8,7 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<StudentsDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("StudentDbConnectionString"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("StudentDbConnectionString"), sqlOptions =>
+        {
+          sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);  
+        })
+        .EnableSensitiveDataLogging()
+        .LogTo(Console.WriteLine, LogLevel.Information);
 });
 
 builder.Services.AddEndpointsApiExplorer();
@@ -26,10 +31,10 @@ builder.Services.AddSwaggerGen(c =>
 });
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    var context = scope.ServiceProvider.GetRequiredService<StudentsDbContext>();
+    context.Database.Migrate();
 }
 
 app.UseSwagger();
@@ -38,16 +43,20 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Student Portal API v1");
 });
 
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
+app.UseExceptionHandler("/Home/Error");
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
 app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
