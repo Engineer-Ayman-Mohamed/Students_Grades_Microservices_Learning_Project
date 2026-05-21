@@ -1,3 +1,12 @@
+// ═══════════════════════════════════════════════════════════════
+// Grades Controller — MVC CRUD with Inter-Service Integration
+// ═══════════════════════════════════════════════════════════════
+// Full CRUD for the Grade entity. Uses IStudentService (HTTP client)
+// to fetch student names from the Students microservice for display
+// in the grades list, detail views, and form dropdowns. All student
+// API calls are wrapped in try/catch with graceful degradation.
+// ═══════════════════════════════════════════════════════════════
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +33,7 @@ public class GradesController : Controller
         _logger = logger;
     }
 
+    // Index: Lists all grades — attempts to resolve student names via HTTP
     public async Task<IActionResult> Index()
     {
         var grades = await _db.Grades
@@ -48,6 +58,7 @@ public class GradesController : Controller
         }
         catch (Exception ex)
         {
+            // Gracefully degrade — show grades without student names
             _logger.LogWarning(ex, "Failed to fetch students for Grades index");
 
             vm.Grades = grades.Select(g => new GradeRowViewModel
@@ -65,6 +76,7 @@ public class GradesController : Controller
         return View(vm);
     }
 
+    // GET Create: Shows the grade creation form with student dropdown
     public async Task<IActionResult> Create()
     {
         var vm = new GradeFormViewModel();
@@ -72,6 +84,7 @@ public class GradesController : Controller
         return View(vm);
     }
 
+    // POST Create: Validates and saves a new grade
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(GradeFormViewModel vm)
@@ -98,6 +111,7 @@ public class GradesController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    // GET Edit: Loads an existing grade into the form
     public async Task<IActionResult> Edit(int? id)
     {
         if (id == null) return NotFound();
@@ -119,6 +133,7 @@ public class GradesController : Controller
         return View(vm);
     }
 
+    // POST Edit: Updates an existing grade
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, GradeFormViewModel vm)
@@ -146,6 +161,7 @@ public class GradesController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    // GET Delete: Shows grade deletion confirmation with student name
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null) return NotFound();
@@ -177,6 +193,7 @@ public class GradesController : Controller
         return View(vm);
     }
 
+    // POST Delete: Confirms and executes grade deletion
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
@@ -192,6 +209,7 @@ public class GradesController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    // Details: Shows full grade info with student name from the API
     public async Task<IActionResult> Details(int? id)
     {
         if (id == null) return NotFound();
@@ -223,6 +241,7 @@ public class GradesController : Controller
         return View(vm);
     }
 
+    // Helper: Populates the student dropdown from the Students API
     private async Task PopulateStudentOptionsAsync(GradeFormViewModel vm)
     {
         try

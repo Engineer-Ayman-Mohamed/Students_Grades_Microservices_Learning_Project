@@ -1,3 +1,11 @@
+// ═══════════════════════════════════════════════════════════════
+// Students REST API Controller — Full CRUD over JSON
+// ═══════════════════════════════════════════════════════════════
+// Exposes a RESTful API at /api/students for programmatic access.
+// Uses StudentDto records for request/response and includes email
+// uniqueness validation. Documented via Swagger XML comments.
+// ═══════════════════════════════════════════════════════════════
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentDockerPortalProject.Students.Data;

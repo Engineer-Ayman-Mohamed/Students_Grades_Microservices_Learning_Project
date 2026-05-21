@@ -1,4 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// ═══════════════════════════════════════════════════════════════
+// Students Controller — MVC CRUD + JSON Endpoints
+// ═══════════════════════════════════════════════════════════════
+// Standard scaffolded CRUD (Index/Create/Edit/Delete/Details) for
+// the Student entity. Also exposes GetAll() and GetById() returning
+// raw JSON — consumed by the Grades microservice via HTTP.
+// ═══════════════════════════════════════════════════════════════
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentDockerPortalProject.Students.Data;
 using StudentDockerPortalProject.Students.Models;
@@ -84,6 +92,7 @@ public class StudentsController : Controller
         if (student == null) return NotFound();
         return View(student);
     }
+    // JSON endpoints consumed by Grades microservice
     public async Task<ActionResult<List<Student>>> GetAll()
     {
         var students = await  _context.Students.AsNoTracking().ToListAsync();

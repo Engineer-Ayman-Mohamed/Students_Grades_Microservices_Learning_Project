@@ -1,4 +1,11 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+﻿# ═══════════════════════════════════════════════════
+# Students Microservice — Multi-stage Docker Build
+# ═══════════════════════════════════════════════════
+# Stage 1: Build — restores dependencies and publishes a Release build
+# Stage 2: Runtime — copies published output into a slim ASP.NET image
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+
 WORKDIR /app
 COPY ["StudentDockerPortalProject.Students.csproj", "./"]
 RUN dotnet restore "StudentDockerPortalProject.Students.csproj"

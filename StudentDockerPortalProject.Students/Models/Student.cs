@@ -1,4 +1,11 @@
-﻿namespace StudentDockerPortalProject.Students.Models;
+﻿// ═══════════════════════════════════════════════════════════════
+// Student Entity — Core domain model
+// ═══════════════════════════════════════════════════════════════
+// Mapped to the [Students].[Students] table via EF Core. All string
+// properties are required (enforced by C# 11 required modifier).
+// ═══════════════════════════════════════════════════════════════
+
+namespace StudentDockerPortalProject.Students.Models;
 
 public class Student
 {
