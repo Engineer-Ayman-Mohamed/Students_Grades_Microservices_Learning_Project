@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StudentDockerPortalProject.Students</name>
+    </assembly>
+    <members>
+        <member name="M:StudentDockerPortalProject.Students.Controllers.Api.StudentsApiController.GetAll">
+            <summary>Returns all students.</summary>
+            <response code="200">List of students retrieved successfully.</response>
+        </member>
+        <member name="M:StudentDockerPortalProject.Students.Controllers.Api.StudentsApiController.GetById(System.Int32)">
+            <summary>Returns a student by ID.</summary>
+            <param name="id">The student ID.</param>
+            <response code="200">Student found.</response>
+            <response code="404">Student not found.</response>
+        </member>
+        <member name="M:StudentDockerPortalProject.Students.Controllers.Api.StudentsApiController.Create(StudentDockerPortalProject.Students.Models.Dtos.CreateStudentRequest)">
+            <summary>Creates a new student.</summary>
+            <param name="request">Student details.</param>
+            <response code="201">Student created successfully.</response>
+            <response code="400">Validation failed.</response>
+        </member>
+        <member name="M:StudentDockerPortalProject.Students.Controllers.Api.StudentsApiController.Update(System.Int32,StudentDockerPortalProject.Students.Models.Dtos.UpdateStudentRequest)">
+            <summary>Updates an existing student.</summary>
+            <param name="id">The student ID.</param>
+            <param name="request">Updated student details.</param>
+            <response code="200">Student updated successfully.</response>
+            <response code="400">Validation failed.</response>
+            <response code="404">Student not found.</response>
+        </member>
+        <member name="M:StudentDockerPortalProject.Students.Controllers.Api.StudentsApiController.Delete(System.Int32)">
+            <summary>Deletes a student by ID.</summary>
+            <param name="id">The student ID.</param>
+            <response code="204">Student deleted successfully.</response>
+            <response code="404">Student not found.</response>
+        </member>
+        <member name="T:StudentDockerPortalProject.Students.Migrations.initialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:StudentDockerPortalProject.Students.Migrations.initialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:StudentDockerPortalProject.Students.Migrations.initialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:StudentDockerPortalProject.Students.Migrations.initialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

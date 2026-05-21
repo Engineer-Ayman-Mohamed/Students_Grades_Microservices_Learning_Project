@@ -1,0 +1,145 @@
+@model GradeIndexViewModel
+@{
+    ViewData["Title"] = "Grades";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" class="flex-shrink-0">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+        <div>@Model.ErrorMessage</div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["Success"] is string success)
+{
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" class="flex-shrink-0">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </svg>
+        <div>@success</div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="page-head">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+            <h1>Grades</h1>
+            <p>@Model.Grades.Count grade@(Model.Grades.Count == 1 ? "" : "s") recorded</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary rounded-pill px-4 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-1" viewBox="0 0 16 16">
+                <path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+            </svg>
+            Add Grade
+        </a>
+    </div>
+</div>
+
+@if (Model.Grades.Count == 0)
+{
+    <div class="empty-state">
+        <div class="icon-holder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="var(--gray-400)" viewBox="0 0 16 16">
+                <path d="M5.5 0a.5.5 0 0 1 .5.5V4h-1V.5a.5.5 0 0 1 .5-.5M3 0a.5.5 0 0 1 .5.5V4h-1V.5A.5.5 0 0 1 3 0m8 0a.5.5 0 0 1 .5.5V4h-1V.5a.5.5 0 0 1 .5-.5M7 1h2v2H7z"/>
+                <path d="M2 2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1H1zm1 8a1 1 0 0 1-1-1V7h14v4a1 1 0 0 1-1 1z"/>
+            </svg>
+        </div>
+        <h5 class="fw-semibold mb-1">No grades yet</h5>
+        <p class="text-muted small mb-3">Get started by recording the first grade.</p>
+        <a asp-action="Create" class="btn btn-primary rounded-pill px-4">Add Grade</a>
+    </div>
+}
+else
+{
+    <div class="d-flex flex-wrap gap-3 mb-4">
+        <div class="stat-card">
+            <div class="stat-icon blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.5 0a.5.5 0 0 1 .5.5V4h-1V.5a.5.5 0 0 1 .5-.5M3 0a.5.5 0 0 1 .5.5V4h-1V.5A.5.5 0 0 1 3 0m8 0a.5.5 0 0 1 .5.5V4h-1V.5a.5.5 0 0 1 .5-.5M7 1h2v2H7z"/>
+                    <path d="M2 2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1H1zm1 8a1 1 0 0 1-1-1V7h14v4a1 1 0 0 1-1 1z"/>
+                </svg>
+            </div>
+            <div>
+                <div class="stat-number" style="color: var(--primary);">@Model.Grades.Count</div>
+                <div class="stat-label">Total Grades</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon green">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.17A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+                </svg>
+            </div>
+            <div>
+                <div class="stat-number" style="color: var(--success);">@Model.Grades.Average(g => g.Score).ToString("N1")</div>
+                <div class="stat-label">Average Score</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-wrap">
+        <table class="table-clean">
+            <thead>
+            <tr>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Score</th>
+                <th>Date</th>
+                <th>Notes</th>
+                <th class="text-end" style="padding-right:1.25rem;">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var grade in Model.Grades)
+            {
+                <tr class="table-row">
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="avatar-sm">
+                                @(grade.StudentName?.Split(' ') is { Length: > 0 } parts
+                                    ? $"{parts[0][0]}{(parts.Length > 1 ? parts[^1][0].ToString() : "")}"
+                                    : "??")
+                            </span>
+                            <span class="fw-medium">@(grade.StudentName ?? "—")</span>
+                        </div>
+                    </td>
+                    <td class="fw-medium">@grade.CourseName</td>
+                    <td>
+                        <span class="badge-custom @(grade.Score >= 60 ? "" : "bg-danger bg-opacity-10 text-danger")">
+                            @grade.Score.ToString("N1")
+                        </span>
+                    </td>
+                    <td class="text-muted">@grade.GradeDate.ToString("MMM dd, yyyy")</td>
+                    <td class="text-muted small">@(string.IsNullOrEmpty(grade.Notes) ? "—" : grade.Notes.Length > 30 ? grade.Notes[..30] + "..." : grade.Notes)</td>
+                    <td class="text-end">
+                        <div class="d-flex gap-1 justify-content-end">
+                            <a asp-action="Details" asp-route-id="@grade.Id" class="btn-action info" title="View details">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                                </svg>
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@grade.Id" class="btn-action edit" title="Edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                                </svg>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@grade.Id" class="btn-action danger" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
