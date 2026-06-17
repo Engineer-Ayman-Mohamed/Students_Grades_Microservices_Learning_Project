@@ -1,3 +1,10 @@
+// ═══════════════════════════════════════════════════════════════
+// Home Controller — Landing page, Privacy, Error pages
+// ═══════════════════════════════════════════════════════════════
+// Serves the grade portal home page, privacy policy, and error
+// page for unhandled exceptions.
+// ═══════════════════════════════════════════════════════════════
+
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using StudentDockerPortalProject.Grade.Models;

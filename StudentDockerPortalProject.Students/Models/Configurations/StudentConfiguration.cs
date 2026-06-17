@@ -1,3 +1,11 @@
+// ═══════════════════════════════════════════════════════════════
+// Student Entity Configuration — EF Core Fluent API
+// ═══════════════════════════════════════════════════════════════
+// Defines column constraints, types, and the unique email index
+// for the Student entity. Applied automatically via
+// ApplyConfigurationsFromAssembly in StudentsDbContext.
+// ═══════════════════════════════════════════════════════════════
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,13 +29,13 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
                .IsRequired()
                .HasMaxLength(100);
 
-        builder.HasIndex(s => s.Email).IsUnique();
+        builder.HasIndex(s => s.Email).IsUnique();  // Enforce unique email constraint at DB level
 
         builder.Property(s => s.DateOfBirth)
                .HasColumnType("date");
 
         builder.Property(s => s.EnrollmentDate)
                .HasColumnType("date")
-               .HasDefaultValueSql("getdate()");;
+               .HasDefaultValueSql("getdate()");;  // Automatically set on insert
     }
 }

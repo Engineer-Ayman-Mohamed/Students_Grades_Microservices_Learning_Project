@@ -1,4 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// ═══════════════════════════════════════════════════════════════
+// StudentService — HTTP Client for Students Microservice
+// ═══════════════════════════════════════════════════════════════
+// Typed HttpClient implementation of IStudentService. Calls the
+// Students service endpoints (students/getall, students/getbyid/{id})
+// and deserializes JSON responses into StudentDto records. The
+// base URL and JSON acceptance header are configured in Program.cs
+// via AddHttpClient.
+// ═══════════════════════════════════════════════════════════════
+
+using Microsoft.AspNetCore.Mvc;
 using StudentDockerPortalProject.Grade.Models.Dtos;
 
 namespace StudentDockerPortalProject.Grade.Services;

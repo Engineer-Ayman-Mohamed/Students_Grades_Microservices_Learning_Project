@@ -1,3 +1,11 @@
+-- ═══════════════════════════════════════════════════════════════
+-- Students Seed Data — 103 sample student records
+-- ═══════════════════════════════════════════════════════════════
+-- Run this script against the DockerStudentPortal database to
+-- populate the [Students].[Students] table with sample data
+-- for development and testing.
+-- ═══════════════════════════════════════════════════════════════
+
 INSERT INTO [Students].[Students] ([FirstName], [LastName], [Email], [DateOfBirth], [EnrollmentDate]) VALUES
 ('Ayman', 'Fathy', 'aymanmohamed.programmer@gmail.com', '2005-03-12', '2026-05-19'),
 ('Sarah', 'Johnson', 'sarah.johnson@email.com', '2004-07-22', '2026-01-15'),

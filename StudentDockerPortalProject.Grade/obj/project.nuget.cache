@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xcr/h+5kzMw=",
+  "dgSpecHash": "0Rz80f1yhoA=",
   "success": true,
-  "projectFilePath": "E:\\ASP.NET\\Docker Project\\Docker Project\\StudentDockerPortalProject\\StudentDockerPortalProject.Grade\\StudentDockerPortalProject.Grade.csproj",
+  "projectFilePath": "E:\\Students_Grades_Microservices_Learning_Project\\StudentDockerPortalProject.Grade\\StudentDockerPortalProject.Grade.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

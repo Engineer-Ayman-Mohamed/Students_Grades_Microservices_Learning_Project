@@ -1,17 +1,28 @@
-﻿services:
+﻿# ═══════════════════════════════════════════════════════════════
+# Students & Grades Microservices — Docker Compose Orchestration
+# ═══════════════════════════════════════════════════════════════
+# Defines 3 containers on a shared bridge network:
+#   sqlserver   — SQL Server 2022 database engine
+#   students-mvc — Student management MVC + REST API
+#   grades-mvc  — Grade management MVC (consumes students API)
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  # ── SQL Server 2022 ──────────────────────────────────────────
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver
     environment:
-      ACCEPT_EULA: "Y"
+      ACCEPT_EULA: "Y"              # Accept the SQL Server license terms
       SA_PASSWORD: "AymanMohamed1234"
     ports:
       - "1433:1433"
     volumes:
-      - sqlserver-data:/var/opt/mssql
+      - sqlserver-data:/var/opt/mssql  # Persist database files across restarts
     networks:
       - student-network
       
+  # ── Students Microservice (MVC + REST API) ────────────────────
   students-mvc:
     build:
       context: ./StudentDockerPortalProject.Students
@@ -20,14 +31,15 @@
     ports:
       - "5001:8080"
     environment:
-      ASPNETCORE_ENVIRONMENT: "Docker"
-      ASPNETCORE_URLS: "http://+:8080"
+      ASPNETCORE_ENVIRONMENT: "Docker"              # Loads appsettings.Docker.json
+      ASPNETCORE_URLS: "http://+:8080"               # Listen on port 8080 inside the container
       ConnectionStrings__StudentDbConnectionString: "Server=sqlserver,1433;Database=DockerStudentPortal;User ID=sa;Password=AymanMohamed1234;TrustServerCertificate=True;"
     depends_on:
       - sqlserver
     networks:
       - student-network
       
+  # ── Grades Microservice (MVC, consumes Students API) ─────────
   grades-mvc:
     build:
       context: ./StudentDockerPortalProject.Grade
@@ -39,14 +51,18 @@
       ASPNETCORE_ENVIRONMENT: "Docker"
       ASPNETCORE_URLS: "http://+:8080"
       ConnectionStrings__StudentDbConnectionString: "Server=sqlserver,1433;Database=DockerGradePortal;User ID=sa;Password=AymanMohamed1234;TrustServerCertificate=True;"
-      StudentsApi__BaseUrl: "http://students-mvc:8080"
+      StudentsApi__BaseUrl: "http://students-mvc:8080"  # Internal Docker DNS name for student service
     depends_on:
       - sqlserver
       - students-mvc
     networks:
       - student-network
+
+# ── Persistent Volume ──────────────────────────────────────────
 volumes:
   sqlserver-data:
+
+# ── Shared Bridge Network ──────────────────────────────────────
 networks:
   student-network:
     driver: bridge

@@ -5149,11 +5149,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ASP.NET\\Docker Project\\Docker Project\\StudentDockerPortalProject\\StudentDockerPortalProject.Grade\\StudentDockerPortalProject.Grade.csproj",
+      "projectUniqueName": "E:\\Students_Grades_Microservices_Learning_Project\\StudentDockerPortalProject.Grade\\StudentDockerPortalProject.Grade.csproj",
       "projectName": "StudentDockerPortalProject.Grade",
-      "projectPath": "E:\\ASP.NET\\Docker Project\\Docker Project\\StudentDockerPortalProject\\StudentDockerPortalProject.Grade\\StudentDockerPortalProject.Grade.csproj",
+      "projectPath": "E:\\Students_Grades_Microservices_Learning_Project\\StudentDockerPortalProject.Grade\\StudentDockerPortalProject.Grade.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "E:\\ASP.NET\\Docker Project\\Docker Project\\StudentDockerPortalProject\\StudentDockerPortalProject.Grade\\obj\\",
+      "outputPath": "E:\\Students_Grades_Microservices_Learning_Project\\StudentDockerPortalProject.Grade\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -14,6 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8537a122b5aef757e9d6f23c124dd7136742e5e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e19fe9da80799bf2dc86f1ce5c25605b0eb5e160")]
 [assembly: System.Reflection.AssemblyProductAttribute("StudentDockerPortalProject.Students")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StudentDockerPortalProject.Students")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

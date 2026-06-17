@@ -1,3 +1,10 @@
+// ═══════════════════════════════════════════════════════════════
+// Home Controller — Landing page, Privacy, Error pages
+// ═══════════════════════════════════════════════════════════════
+// Serves the portal home page (with student count), privacy policy,
+// and a generic error page for unhandled exceptions.
+// ═══════════════════════════════════════════════════════════════
+
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
