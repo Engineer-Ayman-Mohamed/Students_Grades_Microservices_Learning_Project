@@ -17,7 +17,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<GradeDatabaseContext>(options =>
 {
     options
-        .UseSqlServer(builder.Configuration.GetConnectionString("StudentDbConnectionString"))
+        .UseSqlServer(builder.Configuration.GetConnectionString("StudentDbConnectionString"), sqlOptions =>
+        {
+            sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", "dbo");
+        })
         .EnableSensitiveDataLogging()
         .LogTo(Console.WriteLine, LogLevel.Information);
 });

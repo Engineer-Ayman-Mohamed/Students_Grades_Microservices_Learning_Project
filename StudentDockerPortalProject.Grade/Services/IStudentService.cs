@@ -12,6 +12,6 @@ namespace StudentDockerPortalProject.Grade.Services;
 
 public interface IStudentService
 {
-    Task<IReadOnlyList<StudentDto>> GetAllStudentsAsync();  // GET /students/getall
-    Task<StudentDto>? GetStudentByIdAsync(int id);          // GET /students/getbyid/{id}
-}   
+    Task<IReadOnlyList<StudentDto>> GetAllStudentsAsync();
+    Task<StudentDto>? GetStudentByIdAsync(int id);
+}

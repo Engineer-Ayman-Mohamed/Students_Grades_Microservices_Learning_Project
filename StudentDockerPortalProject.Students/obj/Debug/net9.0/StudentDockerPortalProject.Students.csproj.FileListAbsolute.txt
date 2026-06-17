@@ -238,3 +238,4 @@ E:\ASP.NET\Docker Project\Docker Project\StudentDockerPortalProject\StudentDocke
 E:\ASP.NET\Docker Project\Docker Project\StudentDockerPortalProject\StudentDockerPortalProject.Students\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 E:\ASP.NET\Docker Project\Docker Project\StudentDockerPortalProject\StudentDockerPortalProject.Students\obj\Debug\net9.0\StudentDockerPortalProject.Students.MvcApplicationPartsAssemblyInfo.cs
 E:\ASP.NET\Docker Project\Docker Project\StudentDockerPortalProject\StudentDockerPortalProject.Students\obj\Debug\net9.0\StudentDockerPortalProject.Students.xml
+E:\ASP.NET\Docker Project\Docker Project\StudentDockerPortalProject\StudentDockerPortalProject.Students\bin\Debug\net9.0\appsettings.Docker.json

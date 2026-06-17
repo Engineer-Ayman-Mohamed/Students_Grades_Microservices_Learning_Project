@@ -18,6 +18,8 @@ builder.Services.AddDbContext<StudentsDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("StudentDbConnectionString"), sqlOptions =>
         {
+          sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);
+          sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", "dbo");
           // Retry up to 10 times with 30s delays — handles SQL Server container startup race
           sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);  
         })
