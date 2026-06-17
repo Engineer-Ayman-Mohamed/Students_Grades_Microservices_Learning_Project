@@ -1,4 +1,5 @@
-﻿using StudentDockerPortalProject.Grade.Models.Dtos;
+﻿using Microsoft.AspNetCore.Mvc;
+using StudentDockerPortalProject.Grade.Models.Dtos;
 
 namespace StudentDockerPortalProject.Grade.Services;
 
@@ -11,18 +12,11 @@ public class StudentService : IStudentService
     }
     public async Task<IReadOnlyList<StudentDto>> GetAllStudentsAsync()
     {
-        var students = await _httpClient.GetFromJsonAsync<IReadOnlyList<StudentDto>>("api/students");
+        var students = await _httpClient.GetFromJsonAsync<IReadOnlyList<StudentDto>>("students/getall");
         return students ?? []; 
     }
-    public async Task<StudentDto?> GetStudentByIdAsync(int id)
+    public Task<StudentDto>? GetStudentByIdAsync(int id)
     {
-        try
-        {
-            return await _httpClient.GetFromJsonAsync<StudentDto>($"api/students/{id}");
-        }
-        catch
-        {
-            return null;
-        }
+        return _httpClient.GetFromJsonAsync<StudentDto>($"students/getbyid/{id}")!;
     }
 }
